@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/Suraj-dot-wq/Suraj-Portfolio-page.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sshagent(credentials: ['portfolio-ec2-ssh']) {
+                    sh '''
+                        ssh -o StrictHostKeyChecking=no ubuntu@3.109.210.47 \
+                        "rm -rf /var/www/portfolio/*"
+
+                        scp -o StrictHostKeyChecking=no -r dist/* \
+                        ubuntu@3.109.210.47:/var/www/portfolio/
+                    '''
+                }
+            }
+        }
+
+        stage('Verify') {
+            steps {
+                sshagent(credentials: ['portfolio-ec2-ssh']) {
+                    sh '''
+                        ssh -o StrictHostKeyChecking=no ubuntu@3.109.210.47 \
+                        "ls -la /var/www/portfolio"
+                    '''
+                }
+            }
+        }
+    }
+}
