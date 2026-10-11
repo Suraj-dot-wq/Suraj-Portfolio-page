@@ -20,6 +20,7 @@ import {
   ArrowDownToLine,
   Cpu,
   ArrowUpFromLine,
+  Activity,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -45,6 +46,7 @@ const iconMap: Record<string, LucideIcon> = {
   ArrowDownToLine,
   Cpu,
   ArrowUpFromLine,
+  Activity,
 };
 
 export default function DynamicIcon({

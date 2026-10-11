@@ -6,6 +6,7 @@ import About from '@/pages/About';
 import Skills from '@/pages/Skills';
 import Projects from '@/pages/Projects';
 import DjangoCicdProject from '@/pages/DjangoCicdProject';
+import CloudOpsProject from '@/pages/CloudOpsProject';
 import GnnCybersecurityProject from '@/pages/GnnCybersecurityProject';
 import AiAutomationProject from '@/pages/AiAutomationProject';
 import Certifications from '@/pages/Certifications';
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/skills" element={<Skills />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/django-cicd" element={<DjangoCicdProject />} />
+          <Route path="/projects/cloudops-self-healing" element={<CloudOpsProject />} />
           <Route
             path="/projects/gnn-cybersecurity"
             element={<GnnCybersecurityProject />}
