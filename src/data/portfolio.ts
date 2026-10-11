@@ -39,6 +39,8 @@ export const paths = {
   certificates: {
     awsCloudPractitioner: '/documents/aws.pdf',
     oracleAiFoundation: '/documents/oracle_certification.pdf',
+    devopsFundamentals: '/documents/DevOps_fundamentals.pdf',
+    networkSecurityEssentials: '/documents/Network_Security_Essentials.pdf',
   },
 };
 
@@ -299,6 +301,20 @@ export const certifications = [
     issuer: 'Oracle',
     filePath: paths.certificates.oracleAiFoundation,
     icon: 'BrainCircuit',
+  },
+  {
+    id: 'devops-fundamentals',
+    name: 'DevOps Fundamentals',
+    issuer: 'Infosys Springboard',
+    filePath: paths.certificates.devopsFundamentals,
+    icon: 'GitBranch',
+  },
+  {
+    id: 'network-security-essentials',
+    name: 'Network Security Essentials',
+    issuer: 'Infosys Springboard',
+    filePath: paths.certificates.networkSecurityEssentials,
+    icon: 'ShieldCheck',
   },
 ];
 
