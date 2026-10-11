@@ -4,6 +4,7 @@ import {
   Terminal,
   Code2,
   Bot,
+  Activity,
   Check,
 } from 'lucide-react';
 import { skillCategories } from '@/data/portfolio';
@@ -15,6 +16,7 @@ const iconMap: Record<string, typeof Cloud> = {
   Terminal,
   Code2,
   Bot,
+  Activity,
 };
 
 export default function Skills() {
