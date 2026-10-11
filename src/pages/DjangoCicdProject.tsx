@@ -27,11 +27,11 @@ import { projects, architectureStack, social } from '@/data/portfolio';
 const project = projects.find((p) => p.slug === 'django-cicd')!;
 
 const architectureSteps = [
-  { label: 'Developer', icon: Code2 },
-  { label: 'GitHub', icon: Github },
-  { label: 'Jenkins', icon: Workflow },
+  { label: 'GitHub Repository', icon: Github },
+  { label: 'GitHub Webhook', icon: Code2 },
+  { label: 'Jenkins CI/CD', icon: Workflow },
   { label: 'Docker Build', icon: Package },
-  { label: 'Docker Image', icon: Container },
+  { label: 'Trivy Scan', icon: AlertTriangle },
   { label: 'Docker Hub', icon: CloudUpload },
   { label: 'AWS EC2', icon: Server },
   { label: 'Docker Compose', icon: Layers },
@@ -44,25 +44,25 @@ const stackIcons: Record<string, typeof Server> = {
 };
 
 const cicdWorkflow = [
-  'Source code is managed on GitHub and tracked through branches.',
-  'Jenkins detects changes and triggers the CI/CD pipeline automatically.',
-  'Docker builds a container image of the Django application.',
-  'The built image is pushed to Docker Hub as a versioned artifact.',
-  'AWS EC2 pulls the latest image from Docker Hub.',
-  'Docker Compose orchestrates Nginx, Django, and MySQL containers on the EC2 instance.',
+  'Code changes are pushed to the Personal-Notes-App GitHub repository.',
+  'A GitHub webhook triggers the Jenkins pipeline automatically.',
+  'Jenkins builds the React frontend, Django REST API, and supporting Docker images.',
+  'Trivy scans the built images for vulnerabilities before publishing.',
+  'Versioned images are published to Docker Hub for deployment.',
+  'AWS EC2 pulls the images and Docker Compose starts Nginx, Django REST API, MySQL, and React services.',
 ];
 
 const challenges = [
-  'Configuring Nginx as a reverse proxy to route traffic to the Django application container.',
-  'Managing environment variables and secrets across local development and EC2 deployment.',
-  'Ensuring container health checks correctly reflect application readiness.',
-  'Coordinating multiple containers (Django, MySQL, Nginx) with Docker Compose networking.',
+  'Coordinating React, Django REST Framework, MySQL, and Nginx services in one Docker Compose deployment.',
+  'Configuring Nginx to serve web traffic and route requests to the Django REST API.',
+  'Managing environment variables, service dependencies, and networking across local development and EC2.',
+  'Adding Trivy image scanning while keeping the pipeline delivery flow reliable.',
 ];
 
 const futureImprovements = [
-  'Add automated testing stages to the Jenkins pipeline before image build.',
+  'Add automated frontend and backend tests to the Jenkins pipeline.',
   'Implement blue/green or rolling deployments for zero-downtime updates.',
-  'Integrate AWS CloudWatch monitoring and alerting for the deployed containers.',
+  'Connect Prometheus and Grafana dashboards to the deployed application or host.',
   'Move database persistence to a managed service or attached EBS volume.',
 ];
 
@@ -101,12 +101,11 @@ export default function DjangoCicdProject() {
       {/* Overview */}
       <Section title="Overview" icon={<Settings className="h-5 w-5" />}>
         <p className="leading-relaxed">
-          This project is a containerized Django Notes application deployed on
-          AWS EC2 using Docker, Docker Compose, MySQL, Nginx, and a Jenkins-based
-          CI/CD pipeline. It demonstrates an end-to-end DevOps workflow — from
-          source code management on GitHub through automated image building and
-          cloud deployment — reflecting the kind of pipeline used in real Cloud
-          Engineering and DevOps environments.
+          NexaVault is a containerized, multi-user knowledge and productivity
+          platform built with React and Django REST Framework. It is deployed on
+          AWS EC2 using Docker, Docker Compose, MySQL, and Nginx, with Jenkins
+          automating the delivery workflow from GitHub webhook through image
+          scanning, Docker Hub publishing, and cloud deployment.
         </p>
       </Section>
 
@@ -119,11 +118,10 @@ export default function DjangoCicdProject() {
               Problem
             </h3>
             <p className="text-sm leading-relaxed text-slate-300">
-              Deploying a Django application with a MySQL database manually is
-              error-prone, slow, and hard to reproduce. Server configuration
-              drift, manual image builds, and inconsistent environments make it
-              difficult to deliver updates reliably — especially as an application
-              grows.
+              Deploying a multi-user productivity platform with separate frontend,
+              API, database, and web-serving services manually is error-prone and
+              difficult to reproduce. Manual image builds and server changes make
+              reliable updates harder as the platform grows.
             </p>
           </div>
         </Reveal>
@@ -134,11 +132,10 @@ export default function DjangoCicdProject() {
               Solution
             </h3>
             <p className="text-sm leading-relaxed text-slate-300">
-              Containerize the Django app and MySQL database with Docker, use
-              Docker Compose to orchestrate multi-container deployment, place
-              Nginx in front as a reverse proxy, and automate the entire
-              build-and-deploy cycle with a Jenkins CI/CD pipeline running on an
-              AWS EC2 instance.
+              Package the React frontend, Django REST API, and MySQL services with
+              Docker, use Docker Compose for orchestration, place Nginx in front
+              for web traffic, scan images with Trivy, and automate the delivery
+              cycle with Jenkins on AWS EC2.
             </p>
           </div>
         </Reveal>
@@ -223,25 +220,23 @@ export default function DjangoCicdProject() {
       {/* Docker Setup */}
       <Section title="Docker Setup" icon={<Container className="h-5 w-5" />}>
         <p className="leading-relaxed">
-          The Django application is packaged into a Docker image defined by a
-          Dockerfile, ensuring the application runs identically across
-          development and production environments. Docker Compose is used to
-          define and run the multi-container stack — Django, MySQL, and Nginx —
-          with container health checks in place so the system can detect and
-          recover from unhealthy containers.
+          NexaVault packages its React frontend, Django REST API, MySQL database,
+          and Nginx web server into a Docker-based stack. Docker Compose defines
+          the service relationships and deployment flow, while the Jenkins
+          pipeline builds the images and Trivy scans them for vulnerabilities
+          before they are published to Docker Hub.
         </p>
       </Section>
 
       {/* AWS Deployment */}
       <Section title="AWS Deployment" icon={<Server className="h-5 w-5" />}>
         <p className="leading-relaxed">
-          The application is deployed on an AWS EC2 instance running Linux. The
-          EC2 instance pulls the latest Docker image from Docker Hub and uses
-          Docker Compose to bring up the full stack. Nginx serves as the reverse
-          proxy in front of the Django application, handling incoming HTTP
-          requests. Linux server administration — including SSH access, package
-          management, and service management — is part of the deployment
-          workflow.
+          NexaVault is hosted on an AWS EC2 instance running Linux. Docker Compose
+          brings up the React, Django REST API, MySQL, and Nginx services, while
+          AWS VPC networking and security groups control access to the deployment.
+          Prometheus, Grafana, and Node Exporter are part of the monitoring work
+          associated with the project; they are described as connected monitoring
+          only when they are actively observing the deployed application or host.
         </p>
       </Section>
 

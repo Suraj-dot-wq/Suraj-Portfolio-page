@@ -137,32 +137,37 @@ export const skillCategories = [
 export const projects = [
   {
     slug: 'django-cicd',
-    title: 'Django Notes Application — AWS + Docker + Jenkins CI/CD',
+    title: 'NexaVault — Multi-User Knowledge & Productivity Platform',
     shortDescription:
-      'A containerized Django Notes application deployed on AWS EC2 using Docker, Docker Compose, MySQL, Nginx and Jenkins-based CI/CD.',
+      'A containerized, multi-user notes and productivity platform built with React and Django REST Framework, deployed with Jenkins, Docker, Nginx, MySQL, and AWS EC2.',
     technologies: [
-      'Django',
+      'React',
       'Python',
+      'Django REST Framework',
       'MySQL',
       'Docker',
       'Docker Compose',
       'Nginx',
       'Jenkins',
-      'GitHub',
+      'GitHub Webhooks',
+      'Trivy',
+      'Docker Hub',
       'AWS EC2',
-      'Linux',
+      'Prometheus',
+      'Grafana',
+      'Node Exporter',
     ],
     keyFeatures: [
-      'GitHub source-code management',
-      'Jenkins CI/CD pipeline',
-      'Docker image building',
-      'Docker Hub image push',
-      'AWS EC2 deployment',
-      'Django application',
-      'MySQL database',
-      'Nginx',
-      'Container health checks',
-      'Linux server administration',
+      'Multi-user knowledge and productivity platform',
+      'React frontend with Django REST API',
+      'GitHub webhook-triggered Jenkins pipeline',
+      'Docker image building and Docker Hub publishing',
+      'Trivy vulnerability scanning',
+      'AWS EC2 deployment with Docker Compose',
+      'Nginx web traffic routing',
+      'MySQL database service',
+      'AWS VPC and security group configuration',
+      'Prometheus, Grafana, and Node Exporter monitoring tools',
     ],
     githubUrl: 'https://github.com/Suraj-dot-wq/Personal-Notes-App',
     icon: 'ServerCog',
@@ -244,7 +249,13 @@ export const architectureSteps = [
   { label: 'Docker Compose', icon: 'Layers' },
 ];
 
-export const architectureStack = ['Nginx', 'Django', 'MySQL'];
+export const architectureStack = [
+  'Nginx',
+  'React',
+  'Django REST API',
+  'MySQL',
+  'Prometheus / Grafana',
+];
 
 // --- AI automation workflow steps -------------------------------------------
 export const aiWorkflowSteps = [
